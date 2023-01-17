@@ -246,6 +246,7 @@ class CsvCtxSrc(RetrieverData):
         super().load_data()
         with open(self.file) as ifile:
             reader = csv.reader(ifile, delimiter="\t")
+            logger.info(f"Read [{self.file}] as csv")
             for row in reader:
                 if row[self.id_col] == "id":
                     continue

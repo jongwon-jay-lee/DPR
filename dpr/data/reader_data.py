@@ -311,7 +311,7 @@ def preprocess_retriever_data(
                 positive_passages=positive_passages,
                 negative_passages=negative_passages,
             )
-        else:
+        else:   # inferernce time, negative_passages used as passages, set pos/neg pasages as None
             yield ReaderSample(question, sample["answers"], passages=negative_passages)
 
     logger.info("no positive passages samples: %d", no_positive_passages)
@@ -449,7 +449,7 @@ def _select_reader_passages(
         positive_samples = list(filter(lambda ctx: ctx.has_answer, ctxs))
         negative_samples = list(filter(lambda ctx: not ctx.has_answer, ctxs))
     else:
-        positive_samples = []
+        positive_samples = []   # For inference, set positive samples as empty
         negative_samples = ctxs
 
     positive_ctxs_from_gold_page = (

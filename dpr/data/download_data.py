@@ -432,6 +432,8 @@ def download_resource(
         root_dir = os.path.abspath("./")
         if "/outputs/" in root_dir:
             root_dir = root_dir[: root_dir.index("/outputs/")]
+        elif "\outputs\\" in root_dir:
+            root_dir = root_dir[: root_dir.index("\outputs\\")]
 
     logger.info("Download root_dir %s", root_dir)
 
